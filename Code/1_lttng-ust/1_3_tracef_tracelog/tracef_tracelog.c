@@ -25,9 +25,9 @@ int fibonacci_tracef(int i)
 
 int fibonacci_tracelog(int i)
 {
-    tracelog(TRACE_WARNING,
+    lttng_ust_tracelog(LTTNG_UST_TRACEPOINT_LOGLEVEL_WARNING,
              "calling fibonacci_tracelog TRACE_WARNING with i=%d", i);
-    tracelog(TRACE_ERR,
+    lttng_ust_tracelog(LTTNG_UST_TRACEPOINT_LOGLEVEL_ERR,
              "calling fibonacci_tracelog TRACE_ERR with i=%d", i);
 
     if (i == 0) {
