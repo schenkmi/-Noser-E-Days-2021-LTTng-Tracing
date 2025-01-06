@@ -1,0 +1,42 @@
+/**
+ * the tracepoint provider header file,
+ * which defines the tracepoints and the events they can generate
+ */
+#undef TRACEPOINT_PROVIDER
+#define TRACEPOINT_PROVIDER hello_world
+
+#undef TRACEPOINT_INCLUDE
+#define TRACEPOINT_INCLUDE "./hello-tp.h"
+
+#if !defined(_HELLO_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define _HELLO_TP_H
+
+#include <lttng/tracepoint.h>
+
+/**
+ * see https://lttng.org/man/3/lttng-ust/v2.13/
+ * #define LTTNG_UST_TRACEPOINT_EVENT(prov_name, t_name, args, fields)
+ *
+ * where provider name (prov_name) is hello_world
+ * where trace name (t_name) is my_first_tracepoint
+ * where args is TP_ARGS(...)
+ * where fields is TP_FIELDS(...)
+ *
+ *
+ */
+TRACEPOINT_EVENT(
+    hello_world,
+    my_first_tracepoint,
+    TP_ARGS(
+        int, my_integer_arg,
+        char*, my_string_arg
+    ),
+    TP_FIELDS(
+        ctf_string(my_string_field, my_string_arg)
+        ctf_integer(int, my_integer_field, my_integer_arg)
+    )
+)
+
+#endif /* _HELLO_TP_H */
+
+#include <lttng/tracepoint-event.h>

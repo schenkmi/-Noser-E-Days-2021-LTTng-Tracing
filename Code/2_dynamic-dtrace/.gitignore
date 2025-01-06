@@ -1,0 +1,5 @@
+.deps/
+ust/
+kernel/
+*.o
+dynamic-dtrace
